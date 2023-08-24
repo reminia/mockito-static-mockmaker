@@ -12,11 +12,11 @@ import java.util.Map;
 
 import static org.mockito.internal.util.StringUtil.join;
 
-public class CustomStaticMockMaker extends InlineByteBuddyMockMaker {
+public class GlobalStaticMockMaker extends InlineByteBuddyMockMaker {
     private static final Map<Class<?>, MockMethodInterceptor> interceptors = new HashMap<>();
     private final CustomCodeGen codeGen;
 
-    public CustomStaticMockMaker() {
+    public GlobalStaticMockMaker() {
         this.codeGen = new CustomCodeGen(ByteBuddyAgent.getInstrumentation());
     }
 

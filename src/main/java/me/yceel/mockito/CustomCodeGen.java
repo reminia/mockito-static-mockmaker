@@ -60,7 +60,7 @@ public class CustomCodeGen implements ClassFileTransformer {
     private static class StaticMethodAdvice {
         @Advice.OnMethodEnter(skipOn = Advice.OnNonDefaultValue.class)
         private static Callable<?> enter(@Advice.Origin Class<?> type, @Advice.Origin Method method, @Advice.AllArguments Object[] arguments) throws Throwable {
-            Map<Class<?>, MockMethodInterceptor> interceptors = CustomStaticMockMaker.getInterceptors();
+            Map<Class<?>, MockMethodInterceptor> interceptors = GlobalStaticMockMaker.getInterceptors();
             MockMethodInterceptor interceptor = interceptors.get(type);
             MockHandler mockHandler = interceptor.getMockHandler();
             Object ret = mockHandler.handle(createInvocation(type, method, arguments,
