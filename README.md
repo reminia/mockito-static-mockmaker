@@ -1,4 +1,4 @@
-# mockito-static-mockmaker ![ci](https://github.com/reminia/mockito-static-mockmaker/action/workflows/pr.yml/badge.svg)
+# mockito-static-mockmaker ![ci](https://github.com/reminia/mockito-static-mockmaker/actions/workflows/pr.yml/badge.svg)
 
 This is a naive mockito mockmaker which supports `mockStatic` globally.
 
