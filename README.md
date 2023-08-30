@@ -6,4 +6,16 @@ This is a naive mockito mockmaker which supports `mockStatic` globally.
 
 This custom mock maker makes it work in multiple threads context.
 
-Check the [unit test](src/test/java/GlobalStaticMockMakerTest.java) for usage.
+Check the [unit test](src/test/java/GlobalStaticMockMakerTest.java) for examples.
+
+# Usage
+
+Add the dependency to your pom.xml.
+
+```xml
+<dependency>
+  <groupId>me.yceel.mockito</groupId>
+  <artifactId>mockito-static-mockmaker</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
