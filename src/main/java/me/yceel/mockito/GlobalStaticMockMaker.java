@@ -15,11 +15,28 @@ import static org.mockito.internal.util.StringUtil.join;
 public class GlobalStaticMockMaker extends InlineByteBuddyMockMaker {
 
   private static final Map<Class<?>, MockMethodInterceptor> interceptors = new HashMap<>();
+  //todo: access needs to be synchronized
+  private static final Map<Class<?>, Boolean> mockStatic = new HashMap<>();
   private final CustomCodeGen codeGen;
 
   public GlobalStaticMockMaker() {
     this.codeGen = new CustomCodeGen(ByteBuddyAgent.getInstrumentation());
   }
+
+  public static boolean isMockStatic(Class<?> type) {
+    if (!mockStatic.containsKey(type)) {
+      return true;
+    } else {
+      boolean ret = mockStatic.get(type);
+      mockStatic.remove(type);
+      return ret;
+    }
+  }
+
+  public static void setMockStatic(Class<?> type) {
+    mockStatic.put(type, false);
+  }
+
 
   public static Map<Class<?>, MockMethodInterceptor> getInterceptors() {
     return interceptors;

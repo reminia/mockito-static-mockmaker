@@ -4,8 +4,8 @@ import java.util.concurrent.Callable;
 
 public class Callables {
 
-  public static Callable<Object> direct(Object obj) {
-    return new DirectCallable(obj);
+  public static Callable<Object> direct(Object value) {
+    return new DirectCallable(value);
   }
 
   private static class DirectCallable implements Callable<Object> {
