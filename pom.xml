@@ -9,13 +9,14 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <mockito.version>3.12.4</mockito.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>3.12.4</version>
+      <version>${mockito.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -33,6 +34,16 @@
       <url>https://maven.pkg.github.com/reminia/mockito-static-mockmaker</url>
     </repository>
   </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>mockito5</id>
+      <properties>
+        <mockito.version>5.2.0</mockito.version>
+        <java.version>11</java.version>
+      </properties>
+    </profile>
+  </profiles>
 
   <build>
     <plugins>

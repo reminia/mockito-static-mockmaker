@@ -22,3 +22,12 @@ jobs:
       - name: Test
         run: mvn test
 
+      - name: Switch to JDK11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: build and test with mockito5 & JDK11
+        run: mvn compile test
+

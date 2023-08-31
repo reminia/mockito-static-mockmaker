@@ -5,7 +5,6 @@ import static net.bytebuddy.matcher.ElementMatchers.isDefaultFinalizer;
 import static net.bytebuddy.matcher.ElementMatchers.isStatic;
 import static net.bytebuddy.matcher.ElementMatchers.isSynthetic;
 import static net.bytebuddy.matcher.ElementMatchers.not;
-import static org.mockito.internal.invocation.DefaultInvocationFactory.createInvocation;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -26,7 +25,8 @@ import net.bytebuddy.dynamic.scaffold.TypeValidation;
 import net.bytebuddy.implementation.Implementation;
 import net.bytebuddy.implementation.bytecode.assign.Assigner;
 import org.mockito.internal.creation.bytebuddy.MockMethodInterceptor;
-import org.mockito.internal.debugging.LocationImpl;
+import org.mockito.internal.invocation.DefaultInvocationFactory;
+import org.mockito.invocation.Invocation;
 import org.mockito.invocation.MockHandler;
 
 public class CustomCodeGen implements ClassFileTransformer {
@@ -83,11 +83,14 @@ public class CustomCodeGen implements ClassFileTransformer {
         return null;
       }
       MockHandler mockHandler = interceptor.getMockHandler();
-      Object ret = mockHandler.handle(
-          createInvocation(type, method, arguments,
-              RealMethods.fromMethod(null, method, arguments),
-              mockHandler.getMockSettings(), new LocationImpl()));
-      return Callables.direct(ret);
+      Invocation invocation = new DefaultInvocationFactory().createInvocation(
+          type,
+          mockHandler.getMockSettings(),
+          method,
+          Callables.fromMethod(null, method, arguments),
+          arguments
+      );
+      return Callables.direct(mockHandler.handle(invocation));
     }
 
     @Advice.OnMethodExit
