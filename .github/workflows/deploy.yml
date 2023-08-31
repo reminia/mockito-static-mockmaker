@@ -11,9 +11,9 @@ jobs:
       - name: delete old snapthos
         uses: actions/delete-package-versions@v4
         with:
-          owner: 'reminia'
-          package-name: 'mockito-static-mockmaker'
-          package-type: 'maven'
+          owner: reminia
+          package-name: 'me.yceel.mockito.mockito-static-mockmaker'
+          package-type: maven
           min-versions-to-keep: 1
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
