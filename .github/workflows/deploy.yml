@@ -11,7 +11,7 @@ jobs:
       packages: write
     steps:
       - name: delete whole package (old snapthos)
-        if: $DELETE
+        if: ${{ vars.DELETE == 'true' }}
         run: |   
           curl -L \
                 -X DELETE \
