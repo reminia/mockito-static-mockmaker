@@ -11,7 +11,8 @@ jobs:
       packages: write
     steps:
       - name: delete old snapthos
-        run:   curl -L \
+        run: |   
+          curl -L \
                 -X DELETE \
                 -H "Accept: application/vnd.github+json" \
                 -H "Authorization: Bearer $GITHUB_TOKEN" \
