@@ -29,5 +29,5 @@ jobs:
           distribution: 'temurin'
 
       - name: build and test with mockito5 & JDK11
-        run: mvn compile test
+        run: mvn compile test -Pmockito5
 
